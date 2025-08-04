@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ujjibon Future Academy - Coming Soon!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-white">
+
+    <canvas id="particle-canvas"></canvas>
+
+    <header class="relative z-20">
+        <nav class="max-w-xl mx-auto mt-8 mb-4 bg-gray-900/50 border border-white/20 backdrop-blur-md rounded-full p-2 animate-fade-in-up">
+            <div class="flex items-center justify-center space-x-4 md:space-x-8">
+                <a href="#" class="text-gray-300 hover:text-orange-400 transition-colors px-3 py-2 rounded-full">Home</a>
+                <a href="#" class="text-gray-300 hover:text-orange-400 transition-colors px-3 py-2 rounded-full">Courses</a>
+                <a href="#" class="text-gray-300 hover:text-orange-400 transition-colors px-3 py-2 rounded-full">About</a>
+                <a href="#" class="text-gray-300 hover:text-orange-400 transition-colors px-3 py-2 rounded-full">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="relative z-10 p-8 w-full max-w-7xl mx-auto text-center">
+        <!-- Logo Placeholder -->
+        <div class="mb-8 animate-fade-in-up flex flex-col items-center">
+            <img src="" onerror="this.onerror=null;this.src='https://placehold.co/200x80/111827/F97316?text=Your+Logo';" alt="Ujjibon Future Academy Logo" class="h-16 mb-4">
+            <h3 class="text-2xl font-bold tracking-wider text-gray-300">Ujjibon Future Academy</h3>
+        </div>
+
+        <!-- Main Heading -->
+        <h1 id="main-heading" class="text-4xl md:text-6xl font-bold mb-4 leading-tight animate-fade-in-up">
+            Ignite Your <span class="gradient-text">Future</span>.
+        </h1>
+        <p id="sub-heading" class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 animate-fade-in-up">
+            We're shaping the next generation of innovators and leaders in Bangladesh. Get ready to unlock in-demand skills and forge your path to success.
+        </p>
+
+        <!-- Countdown Timer -->
+        <div id="countdown" class="flex justify-center gap-4 md:gap-8 mb-12 text-white animate-fade-in-up">
+            <div class="bg-white/10 border border-white/20 backdrop-blur-sm p-4 rounded-lg w-24">
+                <div id="days" class="text-4xl font-bold">00</div>
+                <div class="text-sm text-gray-300">Days</div>
+            </div>
+            <div class="bg-white/10 border border-white/20 backdrop-blur-sm p-4 rounded-lg w-24">
+                <div id="hours" class="text-4xl font-bold">00</div>
+                <div class="text-sm text-gray-300">Hours</div>
+            </div>
+            <div class="bg-white/10 border border-white/20 backdrop-blur-sm p-4 rounded-lg w-24">
+                <div id="minutes" class="text-4xl font-bold">00</div>
+                <div class="text-sm text-gray-300">Minutes</div>
+            </div>
+            <div class="bg-white/10 border border-white/20 backdrop-blur-sm p-4 rounded-lg w-24">
+                <div id="seconds" class="text-4xl font-bold">00</div>
+                <div class="text-sm text-gray-300">Seconds</div>
+            </div>
+        </div>
+
+        <!-- Subscription Form -->
+        <div id="subscription-box" class="max-w-lg mx-auto bg-gray-900/50 border border-white/20 backdrop-blur-md p-6 rounded-xl mb-16 animate-fade-in-up">
+            <h2 class="text-xl font-semibold mb-4">Be the First to Know</h2>
+            <form id="subscribeForm" class="flex flex-col sm:flex-row gap-4">
+                <input type="email" id="emailInput" placeholder="Enter your email address" class="flex-grow p-4 rounded-md bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-orange-500 focus:outline-none text-white placeholder-gray-500 w-full">
+                <button type="submit" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-8 rounded-md transition-all transform hover:scale-105 w-full sm:w-auto">
+                    Notify Me
+                </button>
+            </form>
+            <div id="formMessage" class="mt-4 text-amber-400 h-5"></div>
+        </div>
+
+        <!-- Gemini API Feature: AI Skill Explorer -->
+        <div id="ai-feature" class="max-w-2xl mx-auto bg-gray-900/50 border border-white/20 backdrop-blur-md p-8 rounded-xl text-left animate-fade-in-up mb-16">
+            <h2 class="text-2xl font-bold text-center mb-2">✨ AI Skill Explorer</h2>
+            <p class="text-center text-gray-400 mb-6">Curious what you could learn? Tell us your interests!</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 mb-4">
+                <input type="text" id="interestInput" placeholder="e.g., 'video games and art'" class="flex-grow p-4 rounded-md bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-amber-500 focus:outline-none text-white placeholder-gray-500 w-full">
+                <button id="suggestBtn" class="bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold py-4 px-6 rounded-md transition-all transform hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2">
+                    Suggest Skills
+                </button>
+            </div>
+            
+            <div id="suggestions" class="flex flex-wrap justify-center gap-3 min-h-[40px] mb-4">
+                <!-- AI-generated skill suggestions will appear here -->
+            </div>
+
+            <div id="skill-details" class="bg-gray-800/70 p-6 rounded-lg min-h-[100px] text-center flex items-center justify-center transition-opacity duration-300 opacity-0">
+                <p class="text-gray-400">Click a skill to see why it's valuable!</p>
+            </div>
+        </div>
+
+        <!-- A Glimpse of the Future Section -->
+        <div id="glimpse-section" class="w-full mx-auto text-left animate-fade-in-up mb-16">
+            <h2 class="text-3xl font-bold text-center mb-10">A Glimpse of the <span class="gradient-text">Future</span></h2>
+            <div class="scrolling-banner-wrapper">
+                <div class="scrolling-banner glimpse">
+                    <!-- Feature Cards (Duplicated for seamless scroll) -->
+                    <div class="feature-card bg-gray-900/50 border border-white/20 backdrop-blur-md p-6 rounded-xl text-center flex-shrink-0">
+                        <div class="h-16 flex items-center justify-center mb-4">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Interactive Live Classes</h3>
+                        <p class="text-gray-400">Engage in real-time with instructors and peers. Our classes are dynamic, collaborative, and designed for active participation.</p>
+                    </div>
+                    <div class="feature-card bg-gray-900/50 border border-white/20 backdrop-blur-md p-6 rounded-xl text-center flex-shrink-0">
+                        <div class="h-16 flex items-center justify-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2 1M4 7l2-1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1m2 1l2-1m-2 1V15M18 18l2-1m-2 1l-2-1m2 1V15" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Project-Based Learning</h3>
+                        <p class="text-gray-400">Don't just learn theory, build it. Create real-world projects that showcase your skills to future employers.</p>
+                    </div>
+                    <div class="feature-card bg-gray-900/50 border border-white/20 backdrop-blur-md p-6 rounded-xl text-center flex-shrink-0">
+                         <div class="h-16 flex items-center justify-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Expert Mentorship</h3>
+                        <p class="text-gray-400">Get guidance from industry professionals who are passionate about helping you succeed in your career journey.</p>
+                    </div>
+                     <div class="feature-card bg-gray-900/50 border border-white/20 backdrop-blur-md p-6 rounded-xl text-center flex-shrink-0">
+                        <div class="h-16 flex items-center justify-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">AI-Powered Tools</h3>
+                        <p class="text-gray-400">Leverage cutting-edge AI to personalize your learning path and get instant feedback on your progress.</p>
+                    </div>
+                    <!-- Duplicates -->
+                    <div class="feature-card bg-gray-900/50 border border-white/20 backdrop-blur-md p-6 rounded-xl text-center flex-shrink-0">
+                        <div class="h-16 flex items-center justify-center mb-4">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Interactive Live Classes</h3>
+                        <p class="text-gray-400">Engage in real-time with instructors and peers. Our classes are dynamic, collaborative, and designed for active participation.</p>
+                    </div>
+                    <div class="feature-card bg-gray-900/50 border border-white/20 backdrop-blur-md p-6 rounded-xl text-center flex-shrink-0">
+                        <div class="h-16 flex items-center justify-center mb-4">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2 1M4 7l2-1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1m2 1l2-1m-2 1V15M18 18l2-1m-2 1l-2-1m2 1V15" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Project-Based Learning</h3>
+                        <p class="text-gray-400">Don't just learn theory, build it. Create real-world projects that showcase your skills to future employers.</p>
+                    </div>
+                    <div class="feature-card bg-gray-900/50 border border-white/20 backdrop-blur-md p-6 rounded-xl text-center flex-shrink-0">
+                         <div class="h-16 flex items-center justify-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Expert Mentorship</h3>
+                        <p class="text-gray-400">Get guidance from industry professionals who are passionate about helping you succeed in your career journey.</p>
+                    </div>
+                     <div class="feature-card bg-gray-900/50 border border-white/20 backdrop-blur-md p-6 rounded-xl text-center flex-shrink-0">
+                        <div class="h-16 flex items-center justify-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">AI-Powered Tools</h3>
+                        <p class="text-gray-400">Leverage cutting-edge AI to personalize your learning path and get instant feedback on your progress.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meet the Visionaries Section -->
+        <div id="team-section" class="max-w-5xl mx-auto text-left animate-fade-in-up mb-16">
+            <h2 class="text-3xl font-bold text-center mb-10">Meet the <span class="gradient-text">Visionaries</span></h2>
+            <div class="scrolling-banner-wrapper">
+                <div class="scrolling-banner team">
+                    <!-- Team Member 1 -->
+                    <div class="team-card bg-gray-800 flex-shrink-0">
+                        <div class="bg-image" style="background-image: url('')" onerror="this.style.backgroundImage='url(https://placehold.co/600x800/111827/FBBF24?text=CEO)'"></div>
+                        <div class="team-card-overlay">
+                            <h3 class="text-2xl font-bold text-white">Farhan Ahmed</h3>
+                            <p class="text-amber-400">Founder & CEO</p>
+                        </div>
+                    </div>
+                    <!-- Team Member 2 -->
+                    <div class="team-card bg-gray-800 flex-shrink-0">
+                        <div class="bg-image" style="background-image: url('')" onerror="this.style.backgroundImage='url(https://placehold.co/600x800/111827/FBBF24?text=CTO)'"></div>
+                        <div class="team-card-overlay">
+                            <h3 class="text-2xl font-bold text-white">Nusrat Jahan</h3>
+                            <p class="text-amber-400">Chief Technology Officer</p>
+                        </div>
+                    </div>
+                    <!-- Team Member 3 -->
+                    <div class="team-card bg-gray-800 flex-shrink-0">
+                        <div class="bg-image" style="background-image: url('')" onerror="this.style.backgroundImage='url(https://placehold.co/600x800/111827/FBBF24?text=Lead)'"></div>
+                         <div class="team-card-overlay">
+                            <h3 class="text-2xl font-bold text-white">Karim Chowdhury</h3>
+                            <p class="text-amber-400">Lead Instructor</p>
+                        </div>
+                    </div>
+                    <!-- Duplicates -->
+                    <div class="team-card bg-gray-800 flex-shrink-0">
+                        <div class="bg-image" style="background-image: url('')" onerror="this.style.backgroundImage='url(https://placehold.co/600x800/111827/FBBF24?text=CEO)'"></div>
+                        <div class="team-card-overlay">
+                            <h3 class="text-2xl font-bold text-white">Farhan Ahmed</h3>
+                            <p class="text-amber-400">Founder & CEO</p>
+                        </div>
+                    </div>
+                    <div class="team-card bg-gray-800 flex-shrink-0">
+                        <div class="bg-image" style="background-image: url('')" onerror="this.style.backgroundImage='url(https://placehold.co/600x800/111827/FBBF24?text=CTO)'"></div>
+                        <div class="team-card-overlay">
+                            <h3 class="text-2xl font-bold text-white">Nusrat Jahan</h3>
+                            <p class="text-amber-400">Chief Technology Officer</p>
+                        </div>
+                    </div>
+                    <div class="team-card bg-gray-800 flex-shrink-0">
+                        <div class="bg-image" style="background-image: url('')" onerror="this.style.backgroundImage='url(https://placehold.co/600x800/111827/FBBF24?text=Lead)'"></div>
+                         <div class="team-card-overlay">
+                            <h3 class="text-2xl font-bold text-white">Karim Chowdhury</h3>
+                            <p class="text-amber-400">Lead Instructor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Partner With Us Section -->
+        <div id="partner-section" class="max-w-2xl mx-auto bg-gray-900/50 border border-white/20 backdrop-blur-md p-8 rounded-xl text-center animate-fade-in-up mb-16">
+            <h2 class="text-3xl font-bold mb-4">Partner With <span class="gradient-text">Ujjibon</span></h2>
+            <p class="text-gray-400 mb-6 max-w-lg mx-auto">We are looking for industry partners, educational institutions, and investors who share our vision of empowering the youth of Bangladesh. Let's build the future together.</p>
+            <a href="mailto:partners@ujjibon.com" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-md transition-all transform hover:scale-105 inline-block">
+                Contact Us
+            </a>
+        </div>
+
+        <!-- Proudly Partnered With Section -->
+        <div id="proud-partners-section" class="max-w-5xl mx-auto text-center animate-fade-in-up">
+            <h2 class="text-3xl font-bold mb-10">Proudly <span class="gradient-text">Partnered</span> With</h2>
+            <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+                <!-- Add your partner logos here. Example: -->
+                <div class="text-center">
+                    <img src="" onerror="this.onerror=null;this.src='https://placehold.co/140x70/FFFFFF/111827?text=CompanyA';" alt="Partner Logo 1" class="h-16 grayscale hover:grayscale-0 transition-all duration-300">
+                </div>
+                 <div class="text-center">
+                    <img src="" onerror="this.onerror=null;this.src='https://placehold.co/140x70/FFFFFF/111827?text=CompanyB';" alt="Partner Logo 2" class="h-16 grayscale hover:grayscale-0 transition-all duration-300">
+                </div>
+                 <div class="text-center">
+                    <img src="" onerror="this.onerror=null;this.src='https://placehold.co/140x70/FFFFFF/111827?text=CompanyC';" alt="Partner Logo 3" class="h-16 grayscale hover:grayscale-0 transition-all duration-300">
+                </div>
+                 <div class="text-center">
+                    <img src="" onerror="this.onerror=null;this.src='https://placehold.co/140x70/FFFFFF/111827?text=CompanyD';" alt="Partner Logo 4" class="h-16 grayscale hover:grayscale-0 transition-all duration-300">
+                </div>
+                 <div class="text-center">
+                    <img src="" onerror="this.onerror=null;this.src='https://placehold.co/140x70/FFFFFF/111827?text=CompanyE';" alt="Partner Logo 5" class="h-16 grayscale hover:grayscale-0 transition-all duration-300">
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Social Media Links -->
+        <footer class="mt-16 pb-8 animate-fade-in-up">
+            <p class="text-gray-500 mb-4">Follow our journey</p>
+            <div class="flex justify-center space-x-6">
+                 <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363.416 2.427-.465C9.53 2.013 9.884 2 12.315 2zM12 7a5 5 0 100 10 5 5 0 000-10zm0-2a7 7 0 110 14 7 7 0 010-14zm6.406-1.11a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
