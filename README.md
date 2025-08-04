@@ -1,2 +1,2 @@
-# ufa-coming-soon
-Ujjibon Future Academy - Launching Page
+# Ujjibon Future Academy - Launching Page
+This repository contains the source code for the fancy and professional "Coming Soon" page for Ujjibon Future Academy. The page is designed to build excitement and capture early interest for a new skill-building academy targeting teenagers in Bangladesh. 
